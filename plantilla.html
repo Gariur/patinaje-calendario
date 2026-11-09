@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<!--HEAD-->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap">
+<style>
+:root{--bg:#F7F9FC;--card:#fff;--ink:#0B1330;--muted:#5B6578;--line:#E0E5EE;--acc:#0A84C6;--acc-ink:#fff;--navy:#0B1330;--soft:#EAF4FB;
+ color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0E1220;--card:#161B2E;--ink:#EEF1F8;--muted:#A2ABBE;--line:#2A3149;--acc:#3DA5E0;--acc-ink:#06121C;--soft:#1B2A3E;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0E1220;--card:#161B2E;--ink:#EEF1F8;--muted:#A2ABBE;--line:#2A3149;--acc:#3DA5E0;--acc-ink:#06121C;--soft:#1B2A3E;color-scheme:dark}
+html{scroll-behavior:smooth;scroll-padding-top:4rem}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1rem/1.55 "Plus Jakarta Sans",system-ui,sans-serif}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+.w{max-width:68rem;margin:0 auto;padding:0 1.1rem}
+/* nav */
+nav{position:absolute;inset:0 0 auto 0;z-index:5;padding-top:env(safe-area-inset-top,0px);color:#fff}
+nav .w{display:flex;align-items:center;justify-content:space-between;height:4rem;gap:1rem}
+.logo{display:flex;align-items:center;gap:.6rem;font-weight:800;text-decoration:none}
+.logo i{width:2rem;height:2rem;border-radius:8px;background:var(--acc);display:grid;place-items:center;font-style:normal}
+.logo span{font-weight:400;opacity:.75}
+.links{display:flex;align-items:center;gap:1.2rem;font-size:.9rem}
+.links a{text-decoration:none;opacity:.9}
+.lang{display:flex;border:1px solid rgba(255,255,255,.5);border-radius:999px;padding:2px}
+.lang button{border:0;background:none;color:#fff;font:700 .75rem inherit;font-family:inherit;padding:.3rem .65rem;border-radius:999px;cursor:pointer}
+.lang button[aria-pressed="true"]{background:var(--acc);color:var(--acc-ink)}
+@media(max-width:520px){.links a{display:none}}
+/* hero */
+.hero{background:linear-gradient(180deg,rgba(7,12,32,.62),rgba(7,12,32,.82)),url(/hero.jpg) center/cover;color:#fff;position:relative;overflow:hidden;padding:9rem 0 5rem}
+.hero .w{position:relative}
+.pill{display:inline-block;border:1px solid rgba(255,255,255,.35);border-radius:999px;padding:.25rem .8rem;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:#BFE3F8}
+.hero h1{font-size:clamp(2.3rem,6vw,3.8rem);line-height:1.05;letter-spacing:-.03em;font-weight:800;margin:1rem 0;max-width:15ch}
+.hero p{max-width:48ch;color:#D5DEEE;margin:0 0 1.6rem}
+.btns{display:flex;gap:.7rem;flex-wrap:wrap}
+.btn{display:inline-block;border:1px solid transparent;border-radius:8px;padding:.7rem 1.1rem;font:700 .9rem inherit;font-family:inherit;text-decoration:none;cursor:pointer}
+.btn.pri{background:#fff;color:#0B1330}
+.btn.sec{border-color:rgba(255,255,255,.5);color:#fff;background:none}
+.btn.acc{background:var(--acc);color:var(--acc-ink)}
+/* calendar */
+section{padding:4rem 0}
+h2{font-size:clamp(1.6rem,4vw,2.1rem);letter-spacing:-.02em;margin:0 0 .4rem;font-weight:800}
+.sub{color:var(--muted);margin:0 0 1.4rem;max-width:44ch}
+.head{display:flex;justify-content:space-between;align-items:flex-end;gap:1rem;flex-wrap:wrap}
+label{font-size:.8rem;font-weight:500;display:block;margin-bottom:.25rem}
+select,input,textarea{width:100%;font:inherit;font-size:.9rem;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:8px;padding:.55rem .7rem}
+.bar{display:flex;align-items:center;justify-content:space-between;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:.3rem;margin:1rem 0}
+.bar button{border:0;background:none;color:var(--ink);font-size:1.2rem;width:2.4rem;height:2.4rem;border-radius:8px;cursor:pointer}
+.bar button:hover{background:var(--soft)}
+.bar b{text-transform:capitalize}
+.cols{display:grid;grid-template-columns:minmax(0,1fr) 19rem;gap:1.2rem;align-items:start}
+@media(max-width:860px){.cols{grid-template-columns:1fr}}
+.cal{background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr))}
+.dow{font-size:.68rem;text-align:center;padding:.5rem 0;color:var(--muted);background:var(--bg);border-bottom:1px solid var(--line);text-transform:uppercase;letter-spacing:.06em}
+.day{min-height:4rem;border:0;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--card);color:var(--ink);text-align:left;padding:.4rem;font:inherit;font-size:.8rem;cursor:pointer;display:flex;flex-direction:column;gap:.25rem}
+.day:nth-child(7n){border-right:0}
+.day.out{background:var(--bg);cursor:default}
+.day.sel{outline:2px solid var(--acc);outline-offset:-2px}
+.day .n{width:1.5rem;height:1.5rem;display:grid;place-items:center;border-radius:50%}
+.day.today .n{background:var(--acc);color:var(--acc-ink);font-weight:700}
+.evs{display:flex;flex-direction:column;gap:2px;min-width:0}.ev{font-size:.68rem;line-height:1.25;background:var(--soft);color:var(--ink);border-left:3px solid var(--acc);border-radius:3px;padding:.1rem .3rem;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.day:not(.out):hover{background:var(--soft)}
+@media(max-width:560px){.day{min-height:3.6rem;padding:.25rem}.ev{font-size:0;padding:0;height:6px;width:6px;border:0;border-radius:50%;background:var(--acc);display:inline-block}.day .evs{flex-direction:row;gap:3px;flex-wrap:wrap}}
+.side h3{font-size:1rem;margin:0 0 .7rem}
+.empty{border:1px dashed var(--line);border-radius:10px;padding:1rem;color:var(--muted);font-size:.85rem;text-align:center}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:.8rem .9rem;margin-bottom:.6rem}
+.card h4{margin:0 0 .15rem;font-size:.95rem}
+.card p{margin:0;font-size:.82rem;color:var(--muted)}
+.tag{display:inline-block;font-size:.7rem;font-weight:700;background:var(--soft);color:var(--acc);border-radius:5px;padding:.1rem .45rem;margin-bottom:.3rem}
+/* form */
+.form{display:grid;grid-template-columns:1fr 1.5fr;gap:2.5rem;align-items:start}
+@media(max-width:860px){.form{grid-template-columns:1fr}}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:1.4rem;display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.panel .full{grid-column:1/-1}
+@media(max-width:560px){.panel{grid-template-columns:1fr}}
+.panel h5{margin:0;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--acc)}
+.ok{background:var(--soft);border-radius:10px;padding:.8rem 1rem;font-size:.9rem}
+ul.tips{list-style:none;padding:0;margin:0;display:grid;gap:.8rem;font-size:.9rem;color:var(--muted)}
+.note{font-size:.8rem;color:var(--muted);border-left:3px solid var(--acc);padding-left:.7rem;margin-top:1rem}
+footer{border-top:1px solid var(--line);padding:1.6rem 0 2.4rem;color:var(--muted);font-size:.85rem}footer a,.privnote a{text-decoration:underline}
+</style>
+</head>
+<body>
+<nav><div class="w">
+  <a class="logo" href="#top"><i aria-hidden="true">≋</i>Rollerio</a>
+  <div class="links"><a href="#calendario" data-t="navCal"></a><a href="#enviar" data-t="navSend"></a>
+    <!--LANG--></div>
+</div></nav>
+
+<header class="hero" id="top"><div class="w">
+  <span class="pill" data-t="pill"></span>
+  <h1 data-t="h1"></h1>
+  <p data-t="lead"></p>
+  <div class="btns"><a class="btn pri" href="#calendario" data-t="ctaCal"></a><a class="btn sec" href="#enviar" data-t="navSend"></a></div>
+</div></header>
+
+<section id="calendario"><div class="w">
+  <div class="head"><div><h2 data-t="calH"></h2><p class="sub" data-t="calSub"></p></div>
+    <div style="min-width:12rem"><label for="disc" data-t="disc"></label><select id="disc"></select></div></div>
+  <div class="bar"><button id="prev" aria-label="←">‹</button><b id="mlabel"></b><button id="next" aria-label="→">›</button></div>
+  <div class="cols">
+    <div class="cal"><div class="grid" id="grid"></div></div>
+    <aside class="side"><h3 id="sideH"></h3><div id="sideList"></div></aside>
+  </div>
+</div></section>
+
+<section id="enviar" style="padding-top:0"><div class="w form">
+  <div><h2 data-t="sendH"></h2><p class="sub" data-t="sendSub"></p>
+    <ul class="tips"><li data-t="tip1"></li><li data-t="tip2"></li><li data-t="tip3"></li></ul></div>
+  <form class="panel" id="f" name="submit-race" method="POST" action="/" data-netlify="true" data-netlify-honeypot="bot-field" novalidate>
+    <input type="hidden" name="form-name" value="submit-race">
+    <p hidden><label>No rellenar / Leave empty <input name="bot-field"></label></p>
+    <h5 class="full" data-t="fData"></h5>
+    <div class="full"><label for="fn" data-t="fName"></label><input id="fn" name="race-name" required></div>
+    <div class="full"><label for="fd" data-t="disc"></label><select id="fd" name="discipline" required></select></div>
+    <div><label for="fs" data-t="fStart"></label><input id="fs" name="start-date" type="date" required></div>
+    <div><label for="fe" data-t="fEnd"></label><input id="fe" name="end-date" type="date"></div>
+    <div><label for="fc" data-t="fCity"></label><input id="fc" name="city" required></div>
+    <div><label for="fk" data-t="fCountry"></label><input id="fk" name="country" required></div>
+    <div><label for="fo" data-t="fOrg"></label><input id="fo" name="organizer"></div>
+    <div><label for="fw" data-t="fWeb"></label><input id="fw" name="website" type="url" placeholder="https://"></div>
+    <div class="full"><label for="fx" data-t="fDesc"></label><textarea id="fx" name="description" rows="3"></textarea></div>
+    <h5 class="full" data-t="fContact"></h5>
+    <div><label for="fm" data-t="fMail"></label><input id="fm" name="email" type="email"></div>
+    <p class="full privnote" style="margin:0;font-size:.8rem;color:var(--muted)"><span data-t="privText"></span> <a href="__PRIV__" data-t="privLink"></a></p>
+    <div class="full" id="msg" role="status"></div>
+    <div class="full" style="text-align:right"><button class="btn acc" type="submit" data-t="fSend"></button></div>
+  </form>
+</div></section>
+<!--SEO-->
+<footer><div class="w"><span data-t="foot"></span> · <a href="__PRIV__" data-t="privLink2"></a></div></footer>
+
+<script>
+const D=__D__;
+const L={
+es:{navCal:"Calendario",navSend:"Enviar una carrera",pill:"Patinaje sobre ruedas y patín en línea",h1:"Todas las carreras de patinaje, en un solo calendario",
+ lead:"Encuentra las competencias de velocidad, artístico, roller derby y maratón de los próximos meses, y envíanos las carreras que conozcas para que toda la comunidad las vea.",
+ ctaCal:"Explorar el calendario",calH:"Calendario de carreras",calSub:"Próximas competencias, mes a mes. Selecciona un día para ver sus carreras.",disc:"Disciplina",all:"Todas las disciplinas",
+ sideAll:"Próximas carreras",sideDay:"Carreras del ",none:"Aún no hay carreras publicadas. ¿Conoces una? Envíanosla abajo.",
+ sendH:"Enviar una carrera",sendSub:"¿Conoces una carrera de patinaje que no está en el calendario? Envíanos sus datos. Revisamos cada envío antes de publicarlo.",
+ tip1:"Comparte el nombre, las fechas, la ciudad y la disciplina de la carrera.",tip2:"Agrega el organizador y el sitio oficial para poder verificarla.",tip3:"Revisamos cada envío antes de que aparezca en el calendario.",
+ fData:"Datos de la carrera",fName:"Nombre de la carrera *",pick:"Selecciona una disciplina",fStart:"Fecha de inicio *",fEnd:"Fecha de fin (si dura varios días)",fCity:"Ciudad *",fCountry:"País *",fOrg:"Organizador",fWeb:"Sitio web",fDesc:"Descripción",fContact:"Tu contacto (opcional)",fMail:"Tu correo",fSend:"Enviar carrera",
+ err:"Completa los campos marcados con *.",fail:"No se ha podido enviar. Inténtalo de nuevo en unos minutos.",done:"Gracias. Hemos recibido la carrera y la revisaremos antes de publicarla.",foot:"Una web independiente sobre patinaje.",privText:"Al enviar esta carrera aceptas que usemos tus datos para revisarla y publicarla. Más información en la",privLink:"política de privacidad.",privLink2:"Política de privacidad",
+ dow:["lun","mar","mié","jue","vie","sáb","dom"]},
+en:{navCal:"Calendar",navSend:"Submit a race",pill:"Roller and inline skating",h1:"Every skating race, in one calendar",
+ lead:"Find speed, artistic, roller derby and marathon events in the coming months, and send us the races you know so the whole community can see them.",
+ ctaCal:"Explore the calendar",calH:"Race calendar",calSub:"Upcoming events, month by month. Select a day to see its races.",disc:"Discipline",all:"All disciplines",
+ sideAll:"Upcoming races",sideDay:"Races on ",none:"No races published yet. Know one? Send it in below.",
+ sendH:"Submit a race",sendSub:"Know a skating race that isn’t on the calendar? Send us the details. We review every submission before publishing it.",
+ tip1:"Share the race name, dates, city and discipline.",tip2:"Add the organizer and official website so we can verify it.",tip3:"We review every submission before it appears on the calendar.",
+ fData:"Race details",fName:"Race name *",pick:"Select a discipline",fStart:"Start date *",fEnd:"End date (if multi-day)",fCity:"City *",fCountry:"Country *",fOrg:"Organizer",fWeb:"Website",fDesc:"Description",fContact:"Your contact (optional)",fMail:"Your email",fSend:"Submit race",
+ err:"Fill in the fields marked with *.",fail:"We couldn’t send it. Please try again in a few minutes.",done:"Thank you. We received the race and will review it before publishing.",foot:"An independent site about skating.",privText:"By submitting this race you agree that we use your data to review and publish it. More information in the",privLink:"privacy policy.",privLink2:"Privacy policy",
+ dow:["mon","tue","wed","thu","fri","sat","sun"]}};
+const R=__RACES__;
+const CN=__CN__;
+let lang=document.documentElement.lang==="en"?"en":"es",disc="all",sel=null,cur=new Date();cur=new Date(Date.UTC(cur.getFullYear(),cur.getMonth(),1));
+const $=i=>document.getElementById(i),t=()=>L[lang];
+const iso=d=>d.toISOString().slice(0,10);
+const todayIso=iso(new Date());
+const fmt=(d,o)=>new Intl.DateTimeFormat(lang,Object.assign({timeZone:"UTC"},o)).format(d);
+function opts(el,first){el.innerHTML=`<option value="${first[0]}">${first[1]}</option>`+Object.keys(D).map(k=>`<option value="${k}">${D[k][lang]}</option>`).join("")}
+function render(){
+  const T=t();document.documentElement.lang=lang;
+  document.querySelectorAll("[data-t]").forEach(e=>{if(T[e.dataset.t]!==undefined)e.textContent=T[e.dataset.t]});
+  document.querySelectorAll(".lang button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.l===lang));
+  const dv=disc;opts($("disc"),["all",T.all]);$("disc").value=dv;
+  const fv=$("fd").value;opts($("fd"),["",T.pick]);$("fd").value=fv;
+  $("mlabel").textContent=fmt(cur,{month:"long",year:"numeric"});
+  const y=cur.getUTCFullYear(),m=cur.getUTCMonth(),first=new Date(Date.UTC(y,m,1)),days=new Date(Date.UTC(y,m+1,0)).getUTCDate();
+  const off=(first.getUTCDay()+6)%7,races=R.filter(r=>(disc==="all"||r.k===disc));
+  let h=T.dow.map(d=>`<div class="dow">${d}</div>`).join("");
+  for(let i=0;i<off;i++)h+=`<div class="day out"></div>`;
+  for(let d=1;d<=days;d++){
+    const di=iso(new Date(Date.UTC(y,m,d))),ev=races.filter(r=>r.d===di);
+    h+=`<button class="day${di===todayIso?" today":""}${di===sel?" sel":""}" data-d="${di}"${ev.length?` title="${ev.map(r=>r.n[lang]).join(" · ").replace(/"/g,"&quot;")}"`:""}><span class="n">${d}</span><span class="evs">${ev.map(r=>`<span class="ev">${r.s}</span>`).join("")}</span></button>`;
+  }
+  const tail=(7-((off+days)%7))%7;for(let i=0;i<tail;i++)h+=`<div class="day out"></div>`;
+  $("grid").innerHTML=h;
+  const all=races.filter(r=>sel?r.d===sel:r.d>=todayIso).sort((a,b)=>a.d.localeCompare(b.d)),list=sel?all:all.slice(0,3);
+  $("sideH").textContent=sel?T.sideDay+fmt(new Date(sel+"T00:00:00Z"),{day:"numeric",month:"long"}):T.sideAll;
+  $("sideList").innerHTML=list.length?list.map(r=>`<div class="card"><span class="tag">${D[r.k][lang]}</span><h4><a href="${r.p[lang]}">${r.n[lang]}</a></h4><p>${fmt(new Date(r.d+"T00:00:00Z"),{day:"numeric",month:"long",year:"numeric"})} · ${r.city}, ${CN[r.c][lang]}</p>${r.u?`<p><a href="${r.u}" target="_blank" rel="noopener">${lang==="es"?"Más información":"More info"}</a></p>`:""}</div>`).join(""):`<div class="empty">${T.none}</div>`;
+}
+document.addEventListener("click",e=>{
+  const l=e.target.closest(".lang button");if(l){lang=l.dataset.l;try{localStorage.setItem("lang",lang)}catch(x){}render();return}
+  const d=e.target.closest(".day[data-d]");if(d){sel=sel===d.dataset.d?null:d.dataset.d;render()}
+});
+$("prev").onclick=()=>{cur=new Date(Date.UTC(cur.getUTCFullYear(),cur.getUTCMonth()-1,1));sel=null;render()};
+$("next").onclick=()=>{cur=new Date(Date.UTC(cur.getUTCFullYear(),cur.getUTCMonth()+1,1));sel=null;render()};
+$("disc").onchange=e=>{disc=e.target.value;render()};
+$("f").addEventListener("submit",async e=>{
+  e.preventDefault();const T=t(),f=$("f"),b=f.querySelector("button[type=submit]");
+  const ok=["fn","fd","fs","fc","fk"].every(i=>$(i).value.trim());
+  const show=m=>{$("msg").innerHTML=`<div class="ok">${m}</div>`};
+  if(!ok){show(T.err);return}
+  b.disabled=true;
+  try{
+    const r=await fetch("/",{method:"POST",headers:{"Content-Type":"application/x-www-form-urlencoded"},body:new URLSearchParams(new FormData(f)).toString()});
+    if(!r.ok)throw new Error(r.status);
+    show(T.done);f.reset();
+  }catch(err){show(T.fail)}
+  b.disabled=false;
+});
+render();
+</script>
+</body>
+</html>

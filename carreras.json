@@ -1,0 +1,103 @@
+[
+ {
+  "id": "behobia-san-sebastian-2026",
+  "d": "2026-11-08",
+  "n": {
+   "es": "Behobia – San Sebastián (patines)",
+   "en": "Behobia – San Sebastián (skating)"
+  },
+  "s": "Behobia",
+  "city": "Irun → Donostia / San Sebastián",
+  "c": "ES",
+  "k": "popular",
+  "u": "https://www.behobia-sansebastian.com",
+  "desc": {
+   "es": "Carrera popular de 20 km entre Irun y Donostia / San Sebastián, con una modalidad para patines.",
+   "en": "A 20 km road race between Irun and Donostia / San Sebastián, with a skating category."
+  }
+ },
+ {
+  "id": "jeonju-world-inline-marathon-2026",
+  "d": "2026-11-08",
+  "n": {
+   "es": "Jeonju World Inline Marathon (World Skate Marathon Tour)",
+   "en": "Jeonju World Inline Marathon (World Skate Marathon Tour)"
+  },
+  "s": "Jeonju",
+  "city": "Jeonju",
+  "c": "KR",
+  "k": "maraton",
+  "u": "https://www.worldskate.org/speed/news-speed/3858-world-skate-marathon-tour-2026.html",
+  "desc": {
+   "es": "Última etapa del World Skate Marathon Tour 2026, en Jeonju (Corea del Sur).",
+   "en": "Final stage of the 2026 World Skate Marathon Tour, in Jeonju, South Korea."
+  }
+ },
+ {
+  "id": "never-stop-inline-ultra-marathon-2026",
+  "d": "2026-11-29",
+  "n": {
+   "es": "Ultramaratón Internacional de Patinaje «Nunca Pares»",
+   "en": "Never Stop International Inline Ultra Marathon"
+  },
+  "s": "Never Stop",
+  "city": "Daxi, Taoyuan",
+  "c": "TW",
+  "k": "maraton",
+  "u": "https://www.nownews.com/news/6875026",
+  "desc": {
+   "es": "Ultramaratón internacional de patinaje en Daxi, Taoyuan (Taiwán). Según la noticia consultada, la inscripción cerró el 10 de octubre.",
+   "en": "International inline skating ultra marathon in Daxi, Taoyuan (Taiwan). According to the news report we found, registration closed on 10 October."
+  }
+ },
+ {
+  "id":"p2p-pamplona-puente-2027",
+  "d":"2027-06-06",
+  "n": {
+   "es":"P2P Skate Marathon Pamplona – Puente la Reina - Falta establecer fecha",
+   "en":"P2P Skate Marathon Pamplona – Puente la Reina - A date has yet to be set"
+  },
+  "s":"P2P",
+  "city":"Pamplona → Puente la Reina",
+  "c":"ES",
+  "k":"maraton",
+  "u":"https://pamplonapuente.org/en",
+  "es": "Con un recorrido de 42,195 kilómetros, el evento conecta las localidades de Pamplona y Puente la Reina, y forma parte del prestigioso World Skate Marathon Tour.",
+  "en": "With a course of 42.195 kilometers, the event connects the towns of Pamplona and Puente la Reina and is part of the prestigious World Skate Marathon Tour."
+ }, 
+ {
+  "id": "northshore-inline-marathon-2027",
+  "d": "2027-09-18",
+  "n": {
+   "es": "NorthShore Inline Marathon",
+   "en": "NorthShore Inline Marathon"
+  },
+  "s": "NorthShore",
+  "city": "Duluth, Minnesota",
+  "c": "US",
+  "k": "maraton",
+  "u": "https://northshoreinline.com/",
+  "desc": {
+   "es": "Maratón de patines en línea en Duluth, Minnesota (EE. UU.), que se presenta como la mayor del país.",
+   "en": "Inline skating marathon in Duluth, Minnesota (USA), billed as the nation’s largest."
+  }
+ },
+ {
+  "id": "berlin-marathon-inline-skating-2027",
+  "d": "2027-09-25",
+  "ok": false,
+  "n": {
+   "es": "Berlin Marathon Inline Skating",
+   "en": "Berlin Marathon Inline Skating"
+  },
+  "s": "Berlin",
+  "city": "Berlin",
+  "c": "DE",
+  "k": "maraton",
+  "u": "https://www.world-inline-cup.com/races/berlin",
+  "desc": {
+   "es": "Prueba de patines del fin de semana del maratón de Berlín. La organización aún no ha publicado la edición de 2027.",
+   "en": "Skating race held on the Berlin Marathon weekend. The organizers have not yet published the 2027 edition."
+  }
+ }
+]
